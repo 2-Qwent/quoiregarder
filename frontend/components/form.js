@@ -50,11 +50,11 @@ export default function Form() {
   async function handleSubmit() {
     setIsLoading(true);
     if (
-      !genre1 &&
-      !genre2 &&
-      !startYear &&
-      !endYear &&
-      !minRuntime &&
+      !genre1 ||
+      !genre2 ||
+      !startYear ||
+      !endYear ||
+      !minRuntime ||
       !maxRuntime
     ) {
       alert("Au moins un critère doit être rempli.");
