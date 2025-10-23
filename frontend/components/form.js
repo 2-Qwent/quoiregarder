@@ -3,6 +3,9 @@ import { useState } from "react";
 import MovieCard from "./movieCard";
 
 export default function Form() {
+
+  const backend = process.env.BACKEND_ADDRESS
+
   const [startYear, setStartYear] = useState("");
   const [endYear, setEndYear] = useState("");
   const [minRuntime, setMinRuntime] = useState("");
@@ -60,7 +63,7 @@ export default function Form() {
       return;
     }
     try {
-      const response = await fetch("https://quoiregarder-back.vercel.app/movies", {
+      const response = await fetch(`${backend}/movies`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
