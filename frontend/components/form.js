@@ -4,7 +4,7 @@ import MovieCard from "./movieCard";
 
 export default function Form() {
 
-  const backend = process.env.BACKEND_ADDRESS
+  const backend = process.env.NEXT_PUBLIC_BACKEND_ADDRESS
 
   const [startYear, setStartYear] = useState("");
   const [endYear, setEndYear] = useState("");

@@ -5,7 +5,7 @@ import MovieCard from "./movieCard";
 
 export default function randomGenerator() {
 
-  const backend = process.env.BACKEND_ADDRESS
+  const backend = process.env.NEXT_PUBLIC_BACKEND_ADDRESS
 
   const [movieData, setMovieData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
