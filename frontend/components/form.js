@@ -57,7 +57,7 @@ export default function Form() {
       !minRuntime ||
       !maxRuntime
     ) {
-      alert("Au moins un critère doit être rempli.");
+      alert("Tous les critères doivent être remplis.");
       setIsLoading(false);
       return;
     }
