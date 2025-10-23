@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8f9fa;
+  --foreground: #212c46;
+  --button: #e63946;
+}
+
+.dark {
+  --background: #212c46;
+  --foreground: #ededed;
+  --button: #ff6b6b;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-button: var(--button);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@variant dark (.dark &);
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Enlève les flèches ↑ ↓ de tous les inputs number dans tous les navigateurs */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Pour Firefox */
+}
