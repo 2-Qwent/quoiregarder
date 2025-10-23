@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Form from "@/components/form";
 import RandomGenerator from "@/components/randomGenerator";
-import { useState, useEffect } from "react";
 import DarkMode from "@/components/DarkMode";
 
 export default function Home() {
@@ -20,7 +19,8 @@ export default function Home() {
               critères et trouvez le film parfait à regarder selon vos envies !
             </p>
             <p className="text-2xl mb-2 italic">
-              Vous n'avez vraiment aucune idée ? Laissez l'aléatoire choisir pour vous !
+              Vous n'avez vraiment aucune idée ? Laissez l'aléatoire choisir
+              pour vous !
             </p>
           </div>
         </header>
@@ -37,7 +37,7 @@ export default function Home() {
             target="_blank"
             className="text-button hover:underline"
           >
-            The Movie Database (TMDb)
+            The Movie Database (TMDB)
           </a>
         </p>
         <Image
@@ -47,6 +47,18 @@ export default function Home() {
           height={60}
           className="mx-auto mt-2"
         />
+        <div className="mt-3 text-gray-600 dark:text-gray-400">
+          <p>Créé par Quentin Rohart</p>
+          <p>
+            <a
+              href="https://github.com/2-Qwent?tab=repositories"
+              target="_blank"
+              className="hover:underline"
+            >
+              Le projet sur GitHub
+            </a>
+          </p>
+        </div>
       </footer>
     </div>
   );
