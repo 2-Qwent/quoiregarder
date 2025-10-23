@@ -10,7 +10,7 @@ export default function randomGenerator() {
   async function handleSubmit() {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/movies/random");
+      const response = await fetch("https://quoiregarder-back.vercel.app/movies/random");
       const data = await response.json();
       console.log("Film aléatoire reçu :", data);
       setMovieData(data);

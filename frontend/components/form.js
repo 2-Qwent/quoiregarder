@@ -60,7 +60,7 @@ export default function Form() {
       return;
     }
     try {
-      const response = await fetch("http://localhost:3001/movies", {
+      const response = await fetch("https://quoiregarder-back.vercel.app/movies", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
