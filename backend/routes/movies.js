@@ -1,14 +1,14 @@
 var express = require("express");
 var router = express.Router();
 
+const formatFrenchDate = (dateString) => {
+  if (!dateString) return "Date inconnue";
+  return new Date(dateString).toLocaleDateString("fr-FR");
+};
+
 // Récupérer la liste des films
 router.post("/", async (req, res) => {
   const tmdbApiKey = process.env.TMDB_API_KEY;
-
-  const formatFrenchDate = (dateString) => {
-  if (!dateString) return "Date inconnue";
-  return new Date(dateString).toLocaleDateString('fr-FR');
-};
 
   try {
     const { genres, startYear, endYear, minRuntime, maxRuntime } = req.body;
@@ -31,9 +31,18 @@ router.post("/", async (req, res) => {
 
     const response = await fetch(url);
     const data = await response.json();
-    const movies = data.results.slice(0, 20);
 
-    if (movies.length === 0) return res.json("Aucun film ne correspond à vos critères.");
+    if (!data.results) {
+      console.error("❌ Pas de 'results' dans la réponse");
+      return res.status(500).json({ error: "Réponse TMDb invalide", message: "Pas de résultats" });
+    }
+
+    if (data.results.length === 0) {
+      console.error("❌ Résultats vides");
+      return res.status(404).json({ error: "Aucun film trouvé", message: "Résultats vides" });
+    }
+
+    const movies = data.results.slice(0, 20);
 
     const detailedMovies = await Promise.all(
       movies.map(async (movie) => {
@@ -59,9 +68,9 @@ router.post("/", async (req, res) => {
             runtime: details.runtime || null,
             genres: details.genres?.map((g) => g.name) || [],
           };
-        } catch (err) {
-          console.error(`Erreur sur le film ${movie.id}:`, err.message);
-          return { ...movie, runtime: null };
+        } catch (error) {
+          console.error(`Erreur sur le film ${movie.id}:`, error.message);
+          return { ...movie, runtime: null, genres: []};
         }
       })
     );
@@ -78,17 +87,29 @@ router.get("/random", async (req, res) => {
   const tmdbApiKey = process.env.TMDB_API_KEY;
 
   try {
-
-    const formatFrenchDate = (dateString) => {
-  if (!dateString) return "Date inconnue";
-  return new Date(dateString).toLocaleDateString('fr-FR');
-};
-
     const randomPage = Math.floor(Math.random() * 500) + 1;
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&language=fr-FR&include_adult=false&page=${randomPage}&vote_average.gte=6`;
 
     const response = await fetch(url);
     const data = await response.json();
+
+    if (!data.results) {
+      console.error("❌ Pas de propriété 'results' dans la réponse TMDb");
+      return res
+        .status(500)
+        .json({
+          error: "Réponse invalide de TMDb",
+          message: "Pas de résultats",
+        });
+    }
+
+    if (data.results.length === 0) {
+      console.error("❌ Aucun film trouvé dans les résultats");
+      return res
+        .status(404)
+        .json({ error: "Aucun film trouvé", message: "Résultats vides" });
+    }
+
     const movies = data.results;
 
     const randomIndex = Math.floor(Math.random() * movies.length);

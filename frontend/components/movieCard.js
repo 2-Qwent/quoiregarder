@@ -44,7 +44,7 @@ export default function movieCard(props) {
           <p className="mb-6 text-xl text-foreground">{props.overview}</p>
           <p className="text-base text-foreground">
             Genre(s) :{" "}
-            {props.genres.length > 0 ? props.genres.join(", ") : "N/A"}
+            {props.genres && props.genres.length > 0 ? props.genres.join(", ") : "N/A"}
           </p>
         </div>
       </div>

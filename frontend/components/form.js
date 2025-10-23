@@ -60,7 +60,7 @@ export default function Form() {
       return;
     }
     try {
-      const response = await fetch("http://localhost:3001/movies", {
+      const response = await fetch("https://quoiregarder-back.vercel.app/movies", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,8 +74,8 @@ export default function Form() {
         }),
       });
       const data = await response.json();
-      if (data === "Aucun film ne correspond à vos critères.") {
-        alert(data);
+      if (data.error) {
+        alert(data.message || "Une erreur s'est produite. Veuillez réessayer.");
         setMoviesData([]);
         return;
       }
