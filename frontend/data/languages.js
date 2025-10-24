@@ -4,13 +4,11 @@ const allLanguages = [
     english_name: "Aymara",
     name: "",
     french_name: "Aymara",
-    french_name: "Aymara",
   },
   {
     iso_639_1: "ch",
     english_name: "Chamorro",
     name: "Finu' Chamorro",
-    french_name: "Chamorro",
     french_name: "Chamorro",
   },
   {
@@ -18,13 +16,11 @@ const allLanguages = [
     english_name: "Fijian",
     name: "",
     french_name: "Fidjien",
-    french_name: "Fidjien",
   },
   {
     iso_639_1: "it",
     english_name: "Italian",
     name: "Italiano",
-    french_name: "Italien",
     french_name: "Italien",
   },
   {
@@ -32,13 +28,11 @@ const allLanguages = [
     english_name: "Navajo",
     name: "",
     french_name: "Navajo",
-    french_name: "Navajo",
   },
   {
     iso_639_1: "qu",
     english_name: "Quechua",
     name: "",
-    french_name: "Quechua",
     french_name: "Quechua",
   },
   {
@@ -46,13 +40,11 @@ const allLanguages = [
     english_name: "Russian",
     name: "Pусский",
     french_name: "Russe",
-    french_name: "Russe",
   },
   {
     iso_639_1: "sc",
     english_name: "Sardinian",
     name: "",
-    french_name: "Sarde",
     french_name: "Sarde",
   },
   {
@@ -60,13 +52,11 @@ const allLanguages = [
     english_name: "Swahili",
     name: "Kiswahili",
     french_name: "Swahili",
-    french_name: "Swahili",
   },
   {
     iso_639_1: "tn",
     english_name: "Tswana",
     name: "",
-    french_name: "Tswana",
     french_name: "Tswana",
   },
   {
@@ -1131,6 +1121,6 @@ const allLanguages = [
     name: "Український",
     french_name: "Ukrainien",
   },
-];
+].sort((a, b) => a.french_name.localeCompare(b.french_name));
 
 export default allLanguages;
