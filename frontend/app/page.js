@@ -51,7 +51,7 @@ export default function Home() {
           {/* Section introduction */}
           <section>
             {/* Version mobile */}
-            <div className="block sm:hidden mb-6">
+            <div className="block sm:hidden mb-6 text-center">
               <h2 className="text-lg font-semibold text-foreground mb-3">
                 Recherche personnalisée
               </h2>
@@ -61,7 +61,7 @@ export default function Home() {
             </div>
 
             {/* Version desktop */}
-            <div className="hidden sm:block mb-6">
+            <div className="hidden sm:block mb-6 text-center">
               <h2 className="text-2xl font-semibold text-foreground mb-3">
                 Recherche personnalisée
               </h2>
@@ -76,7 +76,7 @@ export default function Home() {
           {/* Section aléatoire */}
           <section>
             {/* Version mobile */}
-            <div className="block sm:hidden mb-6">
+            <div className="block sm:hidden mb-6 text-center">
               <h2 className="text-lg font-semibold text-foreground mb-3">
                 Film surprise
               </h2>
@@ -86,7 +86,7 @@ export default function Home() {
             </div>
 
             {/* Version desktop */}
-            <div className="hidden sm:block mb-6">
+            <div className="hidden sm:block mb-6 text-center">
               <h2 className="text-2xl font-semibold text-foreground mb-3">
                 Film surprise
               </h2>
