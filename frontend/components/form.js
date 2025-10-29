@@ -58,7 +58,43 @@ export default function Form() {
   }
 
   async function handleSubmit() {
+    const currentYear = new Date().getFullYear();
+
+    if (
+      startYear &&
+      (parseInt(startYear) < 1900 || parseInt(startYear) > currentYear)
+    ) {
+      alert(`L'année de début doit être entre 1900 et ${currentYear}`);
+      return;
+    }
+
+    if (
+      endYear &&
+      (parseInt(endYear) < 1900 || parseInt(endYear) > currentYear)
+    ) {
+      alert(`L'année de fin doit être entre 1900 et ${currentYear}`);
+      return;
+    }
+
+    if (
+      voteAverageMin &&
+      (parseFloat(voteAverageMin) < 0 || parseFloat(voteAverageMin) > 10)
+    ) {
+      alert("La note moyenne doit être entre 0 et 10");
+      return;
+    }
+
+    if (minRuntime && parseInt(minRuntime) < 0) {
+      alert("La durée minimum ne peut pas être négative");
+      return;
+    }
+
+    if (maxRuntime && parseInt(maxRuntime) < 0) {
+      alert("La durée maximum ne peut pas être négative");
+      return;
+    }
     setIsLoading(true);
+
     try {
       const response = await fetch(`${backend}/movies`, {
         method: "POST",
@@ -72,7 +108,9 @@ export default function Form() {
           minRuntime: minRuntime ? parseInt(minRuntime) : undefined,
           maxRuntime: maxRuntime ? parseInt(maxRuntime) : undefined,
           originCountry,
-          voteAverageMin: voteAverageMin ? parseFloat(voteAverageMin) : undefined,
+          voteAverageMin: voteAverageMin
+            ? parseFloat(voteAverageMin)
+            : undefined,
           voteCountMin: voteCountMin ? parseInt(voteCountMin) : undefined,
         }),
       });
@@ -162,6 +200,8 @@ export default function Form() {
                 </label>
                 <input
                   type="number"
+                  min="1900"
+                  max={new Date().getFullYear()}
                   placeholder="2000"
                   value={startYear}
                   onChange={(e) => setStartYear(e.target.value)}
@@ -174,6 +214,8 @@ export default function Form() {
                 </label>
                 <input
                   type="number"
+                  min="1900"
+                  max={new Date().getFullYear()}
                   placeholder="2010"
                   value={endYear}
                   onChange={(e) => setEndYear(e.target.value)}
@@ -189,6 +231,7 @@ export default function Form() {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   placeholder="90"
                   value={minRuntime}
                   onChange={(e) => setMinRuntime(e.target.value)}
@@ -201,6 +244,7 @@ export default function Form() {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   placeholder="180"
                   value={maxRuntime}
                   onChange={(e) => setMaxRuntime(e.target.value)}
@@ -216,6 +260,8 @@ export default function Form() {
                 </label>
                 <input
                   type="number"
+                  min="0"
+                  max="10"
                   placeholder="7.0"
                   value={voteAverageMin}
                   onChange={(e) => setVoteAverageMin(e.target.value)}
@@ -228,6 +274,7 @@ export default function Form() {
                 </label>
                 <input
                   type="number"
+                  min="0"
                   placeholder="150"
                   value={voteCountMin}
                   onChange={(e) => setVoteCountMin(e.target.value)}
@@ -272,6 +319,8 @@ export default function Form() {
             <span className="inline-block mx-1">
               <input
                 type="number"
+                min="1900"
+                max={new Date().getFullYear()}
                 placeholder="2000"
                 value={startYear}
                 onChange={(e) => setStartYear(e.target.value)}
@@ -282,6 +331,8 @@ export default function Form() {
             <span className="inline-block mx-1">
               <input
                 type="number"
+                min="1900"
+                max={new Date().getFullYear()}
                 placeholder="2010"
                 value={endYear}
                 onChange={(e) => setEndYear(e.target.value)}
@@ -292,6 +343,7 @@ export default function Form() {
             <span className="inline-block mx-1">
               <input
                 type="number"
+                min="0"
                 placeholder="90"
                 value={minRuntime}
                 onChange={(e) => setMinRuntime(e.target.value)}
@@ -302,6 +354,7 @@ export default function Form() {
             <span className="inline-block mx-1">
               <input
                 type="number"
+                min="0"
                 placeholder="150"
                 value={maxRuntime}
                 onChange={(e) => setMaxRuntime(e.target.value)}
@@ -312,6 +365,8 @@ export default function Form() {
             <span className="inline-block mx-1">
               <input
                 type="number"
+                min="0"
+                max="10"
                 placeholder="5"
                 value={voteAverageMin}
                 onChange={(e) => setVoteAverageMin(e.target.value)}
@@ -322,6 +377,7 @@ export default function Form() {
             <span className="inline-block mx-1">
               <input
                 type="number"
+                min="0"
                 placeholder="100"
                 value={voteCountMin}
                 onChange={(e) => setVoteCountMin(e.target.value)}

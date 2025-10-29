@@ -45,12 +45,13 @@ export default function randomGenerator() {
         </div>
 
         {/* Version desktop */}
-        <div className="hidden md:block">
-          <p className="text-base lg:text-lg leading-relaxed text-foreground mb-6">
+        <div className="hidden md:block text-center">
+          <p className="text-lg leading-relaxed text-foreground">
             Pas d'inspiration ? Laissez le
-            <span className="font-semibold text-button"> hasard décider</span> ! 
-            On est gentil, on a pris uniquement des films avec une note moyenne de 6
-            ou plus sur TMDb ! 🎲
+            <span className="font-semibold text-button"> hasard décider</span> !
+          </p>
+          <p className="text-base text-gray-600 dark:text-gray-400 mb-2">
+            Films avec une note de 6+ sur TMDb uniquement
           </p>
         </div>
 
