@@ -3,6 +3,7 @@ import { useState } from "react";
 import MovieCard from "./movieCard";
 import countries from "@/data/countries";
 import genres from "@/data/genres";
+import toast from 'react-hot-toast';
 
 export default function Form() {
   const backend = process.env.NEXT_PUBLIC_BACKEND_ADDRESS;
@@ -62,17 +63,17 @@ export default function Form() {
 
     if (
       startYear &&
-      (parseInt(startYear) < 1900 || parseInt(startYear) > currentYear)
+      (parseInt(startYear) < 1892 || parseInt(startYear) > currentYear)
     ) {
-      alert(`L'année de début doit être entre 1900 et ${currentYear}`);
+      toast.error(`L'année de début doit être entre 1892 et ${currentYear}`);
       return;
     }
 
     if (
       endYear &&
-      (parseInt(endYear) < 1900 || parseInt(endYear) > currentYear)
+      (parseInt(endYear) < 1892 || parseInt(endYear) > currentYear)
     ) {
-      alert(`L'année de fin doit être entre 1900 et ${currentYear}`);
+      toast.error(`L'année de fin doit être entre 1892 et ${currentYear}`);
       return;
     }
 
@@ -80,17 +81,17 @@ export default function Form() {
       voteAverageMin &&
       (parseFloat(voteAverageMin) < 0 || parseFloat(voteAverageMin) > 10)
     ) {
-      alert("La note moyenne doit être entre 0 et 10");
+      toast.error("La note moyenne doit être entre 0 et 10");
       return;
     }
 
     if (minRuntime && parseInt(minRuntime) < 0) {
-      alert("La durée minimum ne peut pas être négative");
+      toast.error("La durée minimum ne peut pas être négative");
       return;
     }
 
     if (maxRuntime && parseInt(maxRuntime) < 0) {
-      alert("La durée maximum ne peut pas être négative");
+      toast.error("La durée maximum ne peut pas être négative");
       return;
     }
     setIsLoading(true);
@@ -116,7 +117,7 @@ export default function Form() {
       });
       const data = await response.json();
       if (data.error) {
-        alert(data.message || "Une erreur s'est produite. Veuillez réessayer.");
+        toast.error(data.message || "Une erreur s'est produite. Veuillez réessayer.");
         setMoviesData([]);
         setIsLoading(false);
         return;
@@ -124,7 +125,7 @@ export default function Form() {
       setMoviesData(data);
     } catch (error) {
       console.error("Erreur lors de la soumission du formulaire :", error);
-      alert("Une erreur s'est produite. Veuillez réessayer.");
+      toast.error("Une erreur s'est produite. Veuillez réessayer.");
       setIsLoading(false);
     } finally {
       setIsLoading(false);
@@ -200,7 +201,7 @@ export default function Form() {
                 </label>
                 <input
                   type="number"
-                  min="1900"
+                  min="1892"
                   max={new Date().getFullYear()}
                   placeholder="2000"
                   value={startYear}
@@ -214,7 +215,7 @@ export default function Form() {
                 </label>
                 <input
                   type="number"
-                  min="1900"
+                  min="1892"
                   max={new Date().getFullYear()}
                   placeholder="2010"
                   value={endYear}
@@ -319,7 +320,7 @@ export default function Form() {
             <span className="inline-block mx-1">
               <input
                 type="number"
-                min="1900"
+                min="1892"
                 max={new Date().getFullYear()}
                 placeholder="2000"
                 value={startYear}
@@ -331,7 +332,7 @@ export default function Form() {
             <span className="inline-block mx-1">
               <input
                 type="number"
-                min="1900"
+                min="1892"
                 max={new Date().getFullYear()}
                 placeholder="2010"
                 value={endYear}

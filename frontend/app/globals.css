@@ -4,12 +4,20 @@
   --background: #f8f9fa;
   --foreground: #212c46;
   --button: #e63946;
+  --toast-bg: #ffffff;
+  --toast-text: #1f2937;
+  --toast-border: #e5e7eb;
+  --toast-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .dark {
   --background: #212c46;
   --foreground: #ededed;
   --button: #ff6b6b;
+  --toast-bg: #374151;
+  --toast-text: #f3f4f6;
+  --toast-border: #4b5563;
+  --toast-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }
 
 @theme {

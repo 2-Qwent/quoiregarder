@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import MovieCard from "./movieCard";
+import toast from "react-hot-toast";
 
 export default function randomGenerator() {
   const backend = process.env.NEXT_PUBLIC_BACKEND_ADDRESS;
@@ -20,7 +21,7 @@ export default function randomGenerator() {
         "Erreur lors de la récupération du film aléatoire :",
         error
       );
-      alert("Une erreur s'est produite. Veuillez réessayer.");
+      toast.error("Une erreur s'est produite. Veuillez réessayer.");
     } finally {
       setIsLoading(false);
     }
